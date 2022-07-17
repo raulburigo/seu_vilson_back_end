@@ -14,15 +14,38 @@ input ListUserInput {
   username: String
 }
 
+type LoggedUserOutput {
+  """Generated access_token of the user"""
+  access_token: String!
+  refresh_token: RefreshToken!
+}
+
+input LoginInput {
+  password: String!
+  username: String!
+}
+
 type Mutation {
-  createUser(payload: CreateUserInput!): User!
+  createUser(payload: CreateUserInput!): LoggedUserOutput!
   deleteUser(_id: String!): User!
+  login(loginInput: LoginInput!): LoggedUserOutput!
+  refreshToken(refreshTokenInput: RefreshTokenInput!): LoggedUserOutput!
   updateUser(payload: UpdateUserInput!): User!
 }
 
 type Query {
+  me: User!
   user(_id: String!): User!
   users(filters: ListUserInput): [User!]!
+}
+
+type RefreshToken {
+  refreshToken: String!
+}
+
+input RefreshTokenInput {
+  refreshToken: String!
+  userId: String!
 }
 
 input UpdateUserInput {

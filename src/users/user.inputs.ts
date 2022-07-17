@@ -1,4 +1,5 @@
 import { Field, ID, InputType } from '@nestjs/graphql';
+import { MaxLength, MinLength } from 'class-validator';
 import { Schema as MongooseSchema } from 'mongoose';
 
 @InputType()
@@ -7,6 +8,8 @@ export class CreateUserInput {
   name: string;
 
   @Field(() => String)
+  @MaxLength(200)
+  @MinLength(4)
   username: string;
 
   @Field(() => String)
