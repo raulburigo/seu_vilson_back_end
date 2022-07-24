@@ -45,7 +45,6 @@ type RefreshToken {
 
 input RefreshTokenInput {
   refreshToken: String!
-  userId: String!
 }
 
 input UpdateUserInput {

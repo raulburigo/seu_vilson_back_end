@@ -17,7 +17,7 @@ import {
   RefreshTokenDocument,
 } from './login.model';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, Types } from 'mongoose';
+import { Model, Types, Schema as MongooseSchema } from 'mongoose';
 import { RefreshTokenInput } from './dtos/refreshToken.inputs';
 import { isPast } from 'date-fns';
 
@@ -70,8 +70,9 @@ export class AuthService {
     }
   }
 
-  async refreshToken(refreshTokenInput: RefreshTokenInput) {
-    const { userId, refreshToken } = refreshTokenInput;
+  async refreshToken(refreshTokenInput: RefreshTokenInput, userId: string) {
+    const { refreshToken } = refreshTokenInput;
+
     const token = await this.refreshTokenModel.findOne({
       $and: [{ userId }, { refreshToken }],
     });
@@ -84,7 +85,9 @@ export class AuthService {
     return this.generateUserCredentials(user);
   }
 
-  async generateRefreshToken(userId): Promise<RefreshToken> {
+  async generateRefreshToken(
+    userId: MongooseSchema.Types.ObjectId,
+  ): Promise<RefreshToken> {
     function rand() {
       return Math.random().toString(36).substring(2);
     }

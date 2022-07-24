@@ -15,7 +15,7 @@ import { RefreshToken, RefreshTokenSchema } from './login.model';
     JwtModule.registerAsync({
       useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),
-        signOptions: { expiresIn: '600s' },
+        signOptions: { expiresIn: '1h' },
       }),
       inject: [ConfigService],
     }),

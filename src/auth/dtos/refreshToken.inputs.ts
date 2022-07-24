@@ -4,7 +4,4 @@ import { Field, InputType } from '@nestjs/graphql';
 export class RefreshTokenInput {
   @Field(() => String)
   refreshToken: string;
-
-  @Field(() => String)
-  userId: string;
 }
