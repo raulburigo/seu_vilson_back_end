@@ -18,12 +18,12 @@ export class TesteResolver {
 
   @Mutation(() => Teste)
   async addTeste(@Args('counterInput') input: number): Promise<Teste> {
-    this.testeCounter = input + 1;
+    this.testeCounter = input;
 
     await sleep(1000);
     return {
       id: 'teste-1',
-      counter: this.testeCounter,
+      counter: this.testeCounter + 1,
     };
   }
 }
