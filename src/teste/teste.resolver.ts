@@ -18,7 +18,7 @@ export class TesteResolver {
 
   @Mutation(() => Teste)
   async addTeste(@Args('counterInput') input: number): Promise<Teste> {
-    this.testeCounter = input;
+    this.testeCounter = input + 1;
 
     await sleep(1000);
     return {
