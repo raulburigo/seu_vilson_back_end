@@ -9,18 +9,20 @@ export class TesteResolver {
 
   testeCounter = 0;
   @Query(() => Teste)
-  async teste() {
+  async teste(): Promise<Teste> {
     return {
+      id: 'teste-1',
       counter: this.testeCounter,
     };
   }
 
   @Mutation(() => Teste)
-  async addTeste(@Args('counterInput') input: number) {
+  async addTeste(@Args('counterInput') input: number): Promise<Teste> {
     this.testeCounter = input;
 
     await sleep(1000);
     return {
+      id: 'teste-1',
       counter: this.testeCounter,
     };
   }
