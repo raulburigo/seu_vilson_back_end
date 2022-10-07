@@ -2,6 +2,10 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateTweetInput {
+  content: String!
+}
+
 input CreateUserInput {
   name: String!
   password: String!
@@ -27,16 +31,19 @@ input LoginInput {
 
 type Mutation {
   addTeste(counterInput: Float!): Teste!
+  createTweet(payload: CreateTweetInput!): Tweet!
   createUser(payload: CreateUserInput!): LoggedUserOutput!
   deleteUser(_id: String!): User!
   login(loginInput: LoginInput!): LoggedUserOutput!
   refreshToken(refreshTokenInput: RefreshTokenInput!): LoggedUserOutput!
+  toggleTweetLike(_id: String!): Tweet!
   updateUser(payload: UpdateUserInput!): User!
 }
 
 type Query {
   me: User!
   teste: Teste!
+  tweets: [Tweet!]!
   user(_id: String!): User!
   users(filters: ListUserInput): [User!]!
 }
@@ -51,6 +58,13 @@ input RefreshTokenInput {
 
 type Teste {
   counter: Int!
+  id: ID!
+}
+
+type Tweet {
+  _id: ID!
+  content: String!
+  liked: Boolean!
 }
 
 input UpdateUserInput {
