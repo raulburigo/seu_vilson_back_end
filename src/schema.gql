@@ -56,6 +56,10 @@ input RefreshTokenInput {
   refreshToken: String!
 }
 
+type Subscription {
+  tweetCreated: Tweet!
+}
+
 type Teste {
   counter: Int!
   id: ID!

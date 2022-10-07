@@ -30,6 +30,9 @@ import { TweetModule } from './tweets/tweets.module';
       playground: false,
       debug: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
+      subscriptions: {
+        'graphql-ws': true,
+      },
     }),
     UsersModule,
     AuthModule,
