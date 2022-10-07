@@ -43,7 +43,7 @@ type Mutation {
 type Query {
   me: User!
   teste: Teste!
-  tweets: [Tweet!]!
+  tweets: TweetList!
   user(_id: String!): User!
   users(filters: ListUserInput): [User!]!
 }
@@ -65,6 +65,11 @@ type Tweet {
   _id: ID!
   content: String!
   liked: Boolean!
+}
+
+type TweetList {
+  counter: Float!
+  tweets: [Tweet!]!
 }
 
 input UpdateUserInput {

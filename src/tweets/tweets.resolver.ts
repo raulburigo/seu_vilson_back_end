@@ -4,15 +4,21 @@ import { Types } from 'mongoose';
 
 import { Tweet } from './tweet.model';
 import { TweetsService } from './tweets.service';
+import { TweetList } from './tweet-list.model';
 // const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 @Resolver(() => Tweet)
 export class TweetResolver {
   constructor(private tweetsService: TweetsService) {}
 
-  @Query(() => [Tweet])
-  async tweets() {
-    return this.tweetsService.list();
+  @Query(() => TweetList)
+  async tweets(): Promise<TweetList> {
+    const list = await this.tweetsService.list();
+
+    return {
+      counter: list.length,
+      tweets: list,
+    };
   }
 
   @Mutation(() => Tweet)
