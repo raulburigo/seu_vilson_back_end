@@ -31,7 +31,9 @@ import { TweetModule } from './tweets/tweets.module';
       debug: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       subscriptions: {
-        'graphql-ws': true,
+        'graphql-ws': {
+          path: '/graphql',
+        },
       },
     }),
     UsersModule,

@@ -34,7 +34,7 @@ export class TweetResolver {
     // await sleep(1000);
     const newTweet = await this.tweetsService.create(payload);
 
-    this.pubSub.publish('tweetAdded', { tweetAdded: newTweet });
+    this.pubSub.publish('tweetCreated', { tweetCreated: newTweet });
 
     return newTweet;
   }
@@ -50,6 +50,6 @@ export class TweetResolver {
 
   @Subscription(() => Tweet)
   tweetCreated() {
-    return this.pubSub.asyncIterator('tweetAdded');
+    return this.pubSub.asyncIterator('tweetCreated');
   }
 }
