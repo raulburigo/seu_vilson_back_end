@@ -11,6 +11,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { AuthModule } from './auth/auth.module';
 import { TesteModule } from './teste/teste.module';
 import { TweetModule } from './tweets/tweets.module';
+import { TodoModule } from './todos/todos.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { TweetModule } from './tweets/tweets.module';
     AuthModule,
     TesteModule,
     TweetModule,
+    TodoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

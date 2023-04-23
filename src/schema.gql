@@ -2,6 +2,10 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateTodoInput {
+  title: String!
+}
+
 input CreateTweetInput {
   content: String!
 }
@@ -31,11 +35,14 @@ input LoginInput {
 
 type Mutation {
   addTeste(counterInput: Float!): Teste!
+  createTodo(payload: CreateTodoInput!): Todo!
   createTweet(payload: CreateTweetInput!): Tweet!
   createUser(payload: CreateUserInput!): LoggedUserOutput!
+  deleteTodo(_id: String!): Todo!
   deleteUser(_id: String!): User!
   login(loginInput: LoginInput!): LoggedUserOutput!
   refreshToken(refreshTokenInput: RefreshTokenInput!): LoggedUserOutput!
+  toggleTodoDone(_id: String!): Todo!
   toggleTweetLike(_id: String!): Tweet!
   updateUser(payload: UpdateUserInput!): User!
 }
@@ -43,6 +50,7 @@ type Mutation {
 type Query {
   me: User!
   teste: Teste!
+  todos: Todos!
   tweets: TweetList!
   user(_id: String!): User!
   users(filters: ListUserInput): [User!]!
@@ -63,6 +71,17 @@ type Subscription {
 type Teste {
   counter: Int!
   id: ID!
+}
+
+type Todo {
+  _id: ID!
+  done: Boolean!
+  title: String!
+}
+
+type Todos {
+  counter: Float!
+  todoList: [Todo!]!
 }
 
 type Tweet {
